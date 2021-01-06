@@ -3,20 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_admin extends CI_Model
 {
-	public function getviewData_Product()
-	{
-		$result = $this->db->get('tb_barang');
-		if ($result->num_rows() > 0) {
-			return $result->result();
-		} else {
-			return false;
-		}
-	}
-
-	public function tampil_data()
-	{
-		return $this->db->get('tb_barang');
-	}
 
 	public function delete($where, $table)
 	{
@@ -24,12 +10,12 @@ class M_admin extends CI_Model
 		$this->db->delete($table);
 	}
 
-	public function tambah_barang($data, $table)
+	public function add_data($data, $table)
 	{
 		$this->db->insert($table, $data);
 	}
 
-	public function edit_barang($where, $table)
+	public function edit_data($where, $table)
 	{
 		return $this->db->get_where($table, $where);
 	}
@@ -40,10 +26,33 @@ class M_admin extends CI_Model
 		$this->db->update($table, $data);
 	}
 
-	public function detail_product($kode_barang)
-	{
-		$result = $this->db->where('kode_barang', $kode_barang)->get('tb_barang');
 
+	///////////////////////////////////////////Wisata Alam///////////////////////////
+	function countAllWisata()
+	{
+		$this->db->join('tb_ktwisata', 'tb_ktwisata.id_kategori=tb_wisata.id_kategori');
+		$this->db->join('tb_desa', 'tb_desa.id_desa=tb_wisata.id_desa');
+
+		$datawisata = $this->db->get('tb_wisata')->num_rows();
+		return $datawisata;
+	}
+
+	public function get_dataWisata($limit, $start)
+	{
+		$this->db->join('tb_ktwisata', 'tb_ktwisata.id_kategori=tb_wisata.id_kategori');
+		$this->db->join('tb_desa', 'tb_desa.id_desa=tb_wisata.id_desa');
+		$data = $this->db->get('tb_wisata', $limit, $start)->result_array();
+		return $data;
+	}
+
+	public function wisata($id_wisata)
+	{
+		$this->db->join('tb_ktwisata', 'tb_ktwisata.id_kategori = tb_wisata.id_kategori');
+		$this->db->join('tb_desa', 'tb_desa.id_desa=tb_wisata.id_desa');
+		$this->db->join('tb_image', 'tb_image.id_image = tb_wisata.id_image');
+		$this->db->join('tb_pramuwisata', 'tb_pramuwisata.id_pramuwisata = tb_wisata.id_pramuwisata');
+
+		$result = $this->db->where('id_wisata', $id_wisata)->get('tb_wisata');
 		if ($result->num_rows() > 0) {
 			return $result->result();
 		} else {
@@ -51,93 +60,146 @@ class M_admin extends CI_Model
 		}
 	}
 
-	//menampilkan invoice atau detail pesanan di admin
-	public function invoice()
+	///////////////////////////////////////////Kategori Wisata Alam///////////////////////////
+	function countAllKt()
 	{
-		date_default_timezone_set('Asia/Makassar');
-		$name = $this->input->post('name');
-		$address = $this->input->post('address');
-		$city = $this->input->post('city');
-		$kode_pos = $this->input->post('kode_pos');
-		$email = $this->input->post('email');
-		$nophone = $this->input->post('nophone');
-		$comment = $this->input->post('comment');
-		$shipping = $this->input->post('shipping');
-		$payment = $this->input->post('payment');
-
-		$invoice = array(
-			'name' 			=> $name,
-			'address' 		=> $address,
-			'city' 			=> $city,
-			'kode_pos'		=> $kode_pos,
-			'email' 		=> $email,
-			'nophone' 		=> $nophone,
-			'comment' 		=> $comment,
-			'shipping'		=> $shipping,
-			'payment'		=> $payment,
-			'tgl_pesan' 	=> date('Y-m-d H:i:s'),
-			'batas_bayar'	=> date(
-				'Y-m-d H:i:s',
-				mktime(
-					date('H'),
-					date('i'),
-					date('s'),
-					date('m'),
-					date('d') + 1,
-					date('Y')
-				)
-			),
-		);
-
-		$this->db->insert('tb_invoice', $invoice);
-		$id_invoice = $this->db->insert_id();
-
-		foreach ($this->cart->contents() as $item) {
-			$data = array(
-				'id_invoice'		=> $id_invoice,
-				'kode_barang'		=> $item['id'],
-				'nama_barang'		=> $item['name'],
-				'jumlah'			=> $item['qty'],
-				'harga'				=> $item['price'],
-			);
-			$this->db->insert('tb_pesanan', $data);
-		}
-		return true;
+		$datawisata = $this->db->get('tb_ktwisata')->num_rows();
+		return $datawisata;
 	}
 
-	// public function getInvoice_Id($id_invoice)
+	public function get_dataKt($limit, $start)
+	{
+		$data = $this->db->get('tb_ktwisata', $limit, $start)->result_array();
+		return $data;
+	}
+
+	///////////////////////////////////////////Berita Wisata Alam///////////////////////////
+	function countAllBerita()
+	{
+		$this->db->join('tb_pengelola', 'tb_pengelola.id_pengelola=tb_berita.id_pengelola');
+		$datawisata = $this->db->get('tb_berita')->num_rows();
+		return $datawisata;
+	}
+
+	public function get_dataBerita($limit, $start)
+	{
+		$this->db->join('tb_pengelola', 'tb_pengelola.id_pengelola=tb_berita.id_pengelola');
+		$data = $this->db->get('tb_berita', $limit, $start)->result_array();
+		return $data;
+	}
+
+	//menampilkan detail berita
+	public function berita($id_berita)
+	{
+		$this->db->join('tb_pengelola', 'tb_pengelola.id_pengelola=tb_berita.id_pengelola');
+
+		$result = $this->db->where('id_berita', $id_berita)->get('tb_berita');
+		if ($result->num_rows() > 0) {
+			return $result->result();
+		} else {
+			return false;
+		}
+	}
+
+	///////////////////////////////////////////Blog Wisata Alam///////////////////////////
+	function countAllBlog()
+	{
+		$datawisata = $this->db->get('tb_blog')->num_rows();
+		return $datawisata;
+	}
+
+	public function get_dataBlog($limit, $start)
+	{
+		$data = $this->db->get('tb_blog', $limit, $start)->result_array();
+		return $data;
+	}
+
+	//menampilkan detail blog
+	public function blog($id_blog)
+	{
+
+		$result = $this->db->where('id_blog', $id_blog)->get('tb_blog');
+		if ($result->num_rows() > 0) {
+			return $result->result();
+		} else {
+			return false;
+		}
+	}
+
+	///////////////////////////////////////////Pengelola Wisata///////////////////////////
+	function countAllPengelola()
+	{
+		$pengelolawisata = $this->db->get('tb_pengelola')->num_rows();
+		return $pengelolawisata;
+	}
+
+	public function get_dataPengelola($limit, $start)
+	{
+		$data = $this->db->get('tb_pengelola', $limit, $start)->result_array();
+		return $data;
+	}
+
+	//menampilkan detail blog
+	public function pengelola($id_pengelola)
+	{
+
+		$result = $this->db->where('id_blog', $id_pengelola)->get('tb_pengelola');
+		if ($result->num_rows() > 0) {
+			return $result->result();
+		} else {
+			return false;
+		}
+	}
+
+	///////////////////////////////////////////Pramuwisata Wisata///////////////////////////
+	function countAllPramuwisata()
+	{
+		$this->db->join('tb_pengelola', 'tb_pengelola.id_pengelola=tb_pramuwisata.id_pengelola');
+		$pramuwisaata = $this->db->get('tb_pramuwisata')->num_rows();
+		return $pramuwisaata;
+	}
+
+	public function get_dataPramuwisata($limit, $start)
+	{
+		$this->db->join('tb_pengelola', 'tb_pengelola.id_pengelola=tb_pramuwisata.id_pengelola');
+		$data = $this->db->get('tb_pramuwisata', $limit, $start)->result_array();
+		return $data;
+	}
+
+	//menampilkan detail blog
+	// public function pramuwisata($id_pengelola)
 	// {
-	// 	$result = $this->db->where('id_invoice', $id_invoice)->get('tb_invoice');
+
+	// 	$result = $this->db->where('id_blog', $id_pengelola)->get('tb_pengelola');
 	// 	if ($result->num_rows() > 0) {
-	// 		return $result->row();
+	// 		return $result->result();
 	// 	} else {
 	// 		return false;
 	// 	}
 	// }
 
-	public function getviewPesanan_Id($id_invoice)
+	///////////////////////////////////////////Users Wisata///////////////////////////
+	function countAllUsers()
 	{
-		$result = $this->db->where('id_invoice', $id_invoice)->get('tb_pesanan');
-		if ($result->num_rows() > 0) {
-			return $result->result();
-		} else {
-			return false;
-		}
+		$this->db->join('user_active', 'user_active.is_active=tb_user.is_active');
+		$this->db->join('user_role', 'user_role.id_role=tb_user.role_id');
+		$dataUsers = $this->db->get('tb_user')->num_rows();
+		return $dataUsers;
 	}
 
-	public function getviewData()
+	public function get_dataUsers($limit, $start)
 	{
-		$result = $this->db->get('tb_invoice');
-		if ($result->num_rows() > 0) {
-			return $result->result();
-		} else {
-			return false;
-		}
+		$this->db->join('user_active', 'user_active.is_active=tb_user.is_active');
+		$this->db->join('user_role', 'user_role.id_role=tb_user.role_id');
+		$data = $this->db->get('tb_user', $limit, $start)->result_array();
+		return $data;
 	}
 
-	public function getviewData_User()
+	//menampilkan detail users
+	public function perViewUsers($id_user)
 	{
-		$result = $this->db->get('tb_user');
+
+		$result = $this->db->where('id_user', $id_user)->get('tb_user');
 		if ($result->num_rows() > 0) {
 			return $result->result();
 		} else {

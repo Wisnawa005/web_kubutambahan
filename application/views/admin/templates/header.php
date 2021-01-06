@@ -19,6 +19,14 @@
 	<link href="<?php echo base_url('assets/admin/lib/font-awesome/css/font-awesome.css') ?>" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/admincss/zabuto_calendar.css') ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/admin/lib/gritter/css/jquery.gritter.css') ?>" />
+
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/lib/bootstrap-fileupload/bootstrap-fileupload.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/lib/bootstrap-datepicker/css/datepicker.css') ?> " />
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/lib/bootstrap-daterangepicker/daterangepicker.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/adminlib/bootstrap-timepicker/compiled/timepicker.css') ?>" />
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/adminlib/bootstrap-datetimepicker/datertimepicker.css') ?>" />
+
+
 	<!-- Custom styles for this template -->
 	<link href="<?php echo base_url('assets/admin/css/style.css') ?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/admin/css/style-responsive.css') ?>" rel="stylesheet">
@@ -37,7 +45,7 @@
 				<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+			<a href="index.html" class="logo"><b>PRA<span>BU</span></b></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->

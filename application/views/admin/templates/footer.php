@@ -2,10 +2,10 @@
 		<footer class="site-footer">
 			<div class="text-center">
 				<p>
-					&copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+					&copy; Copyrights <strong>PraBu</strong>. All Rights Reserved <?= date('Y'); ?>
 				</p>
 				<div class="credits">
-					Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
+					Created with PraBu website by <a href="https://www.instagram.com/a_wisnawa3/">Agus Wisnawa</a>
 				</div>
 				<a href="index.html#" class="go-top">
 					<i class="fa fa-angle-up"></i>
@@ -26,6 +26,13 @@
 		<script src="<?php echo base_url('assets/admin/lib/common-scripts.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url('assets/admin/lib/gritter/js/jquery.gritter.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url('assets/admin/lib/gritter-conf.js') ?>"></script>
+
+		<script type="text/javascript" src="<?= base_url('assets/admin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js') ?> "></script>
+		<script type="text/javascript" src="<?= base_url('assets/admin/lib/bootstrap-daterangepicker/date.js') ?>"></script>
+		<script type="text/javascript" src="<?= base_url('assets/admin/lib/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
+		<script type="text/javascript" src="<?= base_url('assets/admin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') ?>"></script>
+		<script type="text/javascript" src="<?= base_url('assets/admin/lib/bootstrap-daterangepicker/moment.min.js') ?>"></script>
+
 		<!--script for this page-->
 		<script src="<?php echo base_url('assets/admin/lib/sparkline-chart.js') ?>"></script>
 		<script src="<?php echo base_url('assets/admin/lib/zabuto_calendar.js') ?>"></script>
@@ -33,11 +40,11 @@
 			$(document).ready(function() {
 				var unique_id = $.gritter.add({
 					// (string | mandatory) the heading of the notification
-					title: 'Welcome to Dashio!',
+					title: '<?= $title; ?>',
 					// (string | mandatory) the text inside the notification
-					text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Developed by <a href="http://alvarez.is" target="_blank" style="color:#4ECDC4">Alvarez.is</a>.',
+					text: '<?= $deskripsi; ?>',
 					// (string | optional) the image to display on the left
-					image: 'img/ui-sam.jpg',
+					image: '<?php echo base_url() . '/upload/user_data/' . $account['image'] ?>',
 					// (bool | optional) if you want it to fade out on its own or just sit there
 					sticky: false,
 					// (int | optional) the time you want it to be alive for before fading out

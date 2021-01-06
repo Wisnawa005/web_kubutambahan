@@ -49,14 +49,15 @@
 									<nav>
 										<ul id="navigation">
 											<li><a class="active" href="<?= site_url('user_login'); ?>">home</a></li>
-											<li><a href="<?= site_url('user_login/about'); ?>">About</a></li>
 											<li><a class="" href="<?= site_url('user_login/destination'); ?>">Destination</a></li>
-											<li><a href="#">blog <i class="ti-angle-down"></i></a>
+											<li><a href="#">All In One <i class="ti-angle-down"></i></a>
 												<ul class="submenu">
 													<li><a href="<?= site_url('user_login/blog'); ?>">blog</a></li>
 													<li><a href="<?= site_url('user_login/news'); ?>">news</a></li>
+													<li><a href="#">Gallery</a></li>
 												</ul>
 											</li>
+											<li><a href="<?= site_url('user_login/about'); ?>">About</a></li>
 											<li><a href="<?= site_url('user_login/contact'); ?>">Contact</a></li>
 										</ul>
 									</nav>
@@ -69,10 +70,10 @@
 									</div>
 									<div class="social_links d-none d-xl-block">
 										<ul>
-											<li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-											<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
+											<li><a href="#"> <i class="fa fa-plane"></i> </a></li>
+											<li><a href="https://kubutambahan.bulelengkab.go.id"> <i class="fa fa-google"></i> </a></li>
 											<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-											<li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
+											<li><a href="<?= site_url('user_login/profile'); ?>"> <i class="fa fa-user"></i> </a></li>
 										</ul>
 									</div>
 								</div>

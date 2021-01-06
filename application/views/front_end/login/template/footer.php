@@ -6,7 +6,7 @@
 					<div class="footer_widget">
 						<div class="footer_logo">
 							<a href="#">
-								<img src="assets/ui/img/footer_logo.png" alt="">
+								<img src="<?= base_url('assets/ui/img/footer_logo.png') ?>" alt="">
 							</a>
 						</div>
 						<p>Dinas Pariwisata Kecamatan Kubutambahan<br> Collaboration Manajement Informatika<br>
@@ -51,10 +51,10 @@
 							Menu Alternative
 						</h3>
 						<ul class="links">
-							<li><a href="#">Destination</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#"> Gallery</a></li>
-							<li><a href="#"> Contact</a></li>
+							<li><a href="<?= site_url('user_login/destination'); ?>">Destination</a></li>
+							<li><a href="<?= site_url('user_login/about'); ?>">About</a></li>
+							<li><a href="<?= site_url('user_login/destination'); ?>"> Gallery</a></li>
+							<li><a href="<?= site_url('user_login/contact'); ?>"> Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -64,14 +64,7 @@
 							Popular destination
 						</h3>
 						<ul class="links double_links">
-							<li><a href="#">Indonesia</a></li>
-							<li><a href="#">America</a></li>
-							<li><a href="#">India</a></li>
-							<li><a href="#">Switzerland</a></li>
-							<li><a href="#">Italy</a></li>
-							<li><a href="#">Canada</a></li>
-							<li><a href="#">Franch</a></li>
-							<li><a href="#">England</a></li>
+
 						</ul>
 					</div>
 				</div>
@@ -83,32 +76,32 @@
 						<div class="instagram_feed">
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/1.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/1.png') ?>" alt="">
 								</a>
 							</div>
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/2.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/2.png') ?>" alt="">
 								</a>
 							</div>
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/3.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/3.png') ?>" alt="">
 								</a>
 							</div>
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/4.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/4.png') ?>" alt="">
 								</a>
 							</div>
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/5.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/5.png') ?>" alt="">
 								</a>
 							</div>
 							<div class="single_insta">
 								<a href="#">
-									<img src="assets/ui/img/instagram/6.png" alt="">
+									<img src="<?= base_url('assets/ui/img/instagram/6.png') ?>" alt="">
 								</a>
 							</div>
 						</div>
